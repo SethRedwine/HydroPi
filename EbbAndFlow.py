@@ -1,4 +1,3 @@
-# set GPIO pin numbering method to BCM
 import RPi.GPIO as GPIO
 import datetime
 
