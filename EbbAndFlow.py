@@ -11,7 +11,7 @@ SETTINGS = {
     # timings
     "LIGHT_FROM": 6,  # Hour, Time to turn on light
     "LIGHT_UNTIL": 20,  # Hour, Time to turn off light
-    "WATERING_TIMES": [7, 11, 15, 19] # Hours, Times to water the plant basin
+    "WATERING_TIMES": [7, 11, 15, 19], # Hours, Times to water the plant basin
     
     "WATER_PUMP_TIME": 20,  # Seconds, how long the pump should be turned on
     "VALVE_TIME": 300, # Seconds, how long to hold the valve open to drain the tank
@@ -40,9 +40,9 @@ def checkWaterPlants():
         for time in SETTINGS["WATERING_TIMES"]
             if (timestamp.hour == time and timestamp.minute < 10)
                 # turn pump on for some seconds
-                GPIO.setup(plantObject["WATER_PUMP_GPIO"], GPIO.OUT, initial=GPIO.LOW)
-                time.sleep(plantObject["PUMP_TIME"])
-                GPIO.output(plantObject["WATER_PUMP_GPIO"], GPIO.HIGH)
+                GPIO.setup(SETTINGS["WATER_PUMP_GPIO"], GPIO.OUT, initial=GPIO.LOW)
+                time.sleep(SETTINGS["PUMP_TIME"])
+                GPIO.output(SETTINGS["WATER_PUMP_GPIO"], GPIO.HIGH)
 
 
 def checkDrainPlants():
@@ -51,9 +51,9 @@ def checkDrainPlants():
             # Drain plants after 10ish minutes
             if (timestamp.hour == time and timestamp.minute > 20)
                 # open valve for some seconds
-                GPIO.setup(plantObject["VALVE_GPIO"], GPIO.OUT, initial=GPIO.LOW)
-                time.sleep(plantObject["VALVE_TIME"])
-                GPIO.output(plantObject["VALVE_GPIO"], GPIO.HIGH)
+                GPIO.setup(SETTINGS["VALVE_GPIO"], GPIO.OUT, initial=GPIO.LOW)
+                time.sleep(SETTINGS["VALVE_TIME"])
+                GPIO.output(SETTINGS["VALVE_GPIO"], GPIO.HIGH)
                 
 ==========================================================================================
 ==========================================================================================
