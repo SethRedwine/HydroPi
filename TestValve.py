@@ -20,23 +20,25 @@ SETTINGS = {
 
 def testDrainPlants():
     print("in test drain plants");
-    GPIO.setup(SETTINGS["VALVE_GPIO"], GPIO.OUT, initial=GPIO.LOW)
+    GPIO.setup(SETTINGS["VALVE_GPIO"], GPIO.OUT, initial=GPIO.HIGH)
     print("opened valve");
     time.sleep(5)
-    GPIO.output(SETTINGS["VALVE_GPIO"], GPIO.HIGH)
+    GPIO.output(SETTINGS["VALVE_GPIO"], GPIO.LOW)
     print("closed valve");
     time.sleep(5)
-    GPIO.setup(SETTINGS["VALVE_GPIO"], GPIO.OUT, initial=GPIO.LOW)
+    GPIO.setup(SETTINGS["VALVE_GPIO"], GPIO.LOW, initial=GPIO.HIGH)
     print("opened valve");
     time.sleep(5)
-    GPIO.output(SETTINGS["VALVE_GPIO"], GPIO.HIGH)
+    GPIO.output(SETTINGS["VALVE_GPIO"], GPIO.LOW)
     print("closed valve");
     time.sleep(5)
-    GPIO.setup(SETTINGS["VALVE_GPIO"], GPIO.OUT, initial=GPIO.LOW)
+    GPIO.setup(SETTINGS["VALVE_GPIO"], GPIO.OUT, initial=GPIO.HIGH)
     print("opened valve");
     time.sleep(5)
-    GPIO.output(SETTINGS["VALVE_GPIO"], GPIO.HIGH)
+    GPIO.output(SETTINGS["VALVE_GPIO"], GPIO.LOW)
     print("closed valve");
+    GPIO.setup(SETTINGS["VALVE_GPIO"], GPIO.OUT, initial=GPIO.HIGH)
+    print("opened valve");
     
 if __name__ == '__main__':
     try:
