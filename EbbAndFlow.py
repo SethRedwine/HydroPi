@@ -23,7 +23,7 @@ SETTINGS = {
 
 def readTime():
         #  return the system-time:
-        return datetime.datetime.utcnow()
+        return datetime.datetime.now()
     
 def checkLight():
     timestamp = readTime()
