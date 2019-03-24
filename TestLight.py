@@ -18,34 +18,31 @@ SETTINGS = {
     "VALVE_TIME": 300, # Seconds, how long to hold the valve open to drain the tank
 }
 
-def testValve():
-    GPIO.setup(SETTINGS["VALVE_GPIO"], GPIO.OUT, initial=GPIO.HIGH)
-    print("opened valve");
+def testLight():
+    GPIO.setup(SETTINGS["LIGHT_GPIO"], GPIO.OUT, initial=GPIO.HIGH) # Relay HIGH = ON
+    print("Light on");
     time.sleep(5)
-    GPIO.output(SETTINGS["VALVE_GPIO"], GPIO.LOW)
-    print("closed valve");
+    GPIO.setup(SETTINGS["LIGHT_GPIO"], GPIO.OUT, initial=GPIO.LOW)
+    print("Light off");
     time.sleep(5)
-    GPIO.setup(SETTINGS["VALVE_GPIO"], GPIO.LOW, initial=GPIO.HIGH)
-    print("opened valve");
+    GPIO.setup(SETTINGS["LIGHT_GPIO"], GPIO.OUT, initial=GPIO.HIGH)
+    print("Light on");
     time.sleep(5)
-    GPIO.output(SETTINGS["VALVE_GPIO"], GPIO.LOW)
-    print("closed valve");
+    GPIO.setup(SETTINGS["LIGHT_GPIO"], GPIO.OUT, initial=GPIO.LOW)
+    print("Light off");
     time.sleep(5)
-    GPIO.setup(SETTINGS["VALVE_GPIO"], GPIO.OUT, initial=GPIO.HIGH)
-    print("opened valve");
+    GPIO.setup(SETTINGS["LIGHT_GPIO"], GPIO.OUT, initial=GPIO.HIGH) 
+    print("Light on");
     time.sleep(5)
-    GPIO.output(SETTINGS["VALVE_GPIO"], GPIO.LOW)
-    print("closed valve");
-    time.sleep(5)
-    GPIO.setup(SETTINGS["VALVE_GPIO"], GPIO.OUT, initial=GPIO.HIGH)
-    print("opened valve");
-    
+    GPIO.setup(SETTINGS["LIGHT_GPIO"], GPIO.OUT, initial=GPIO.LOW)
+    print("Light off");
+
 if __name__ == '__main__':
     try:
         GPIO.setwarnings(False)
         GPIO.setmode(GPIO.BCM)
  
         # execute function
-        testDrainPlants()
+        testLight()
     except:
         GPIO.cleanup()
