@@ -64,7 +64,7 @@ def checkDrainPlants():
 
 if __name__ == '__main__':
     try:
-        print("Ebb and Flow @ %s:" % readTime())
+        print("Ebb and Flow @ %s:" % readTime().strftime("%Y-%m-%d %H:%M"))
         GPIO.setwarnings(False)
         GPIO.setmode(GPIO.BCM)
  
