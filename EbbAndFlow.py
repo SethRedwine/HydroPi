@@ -22,8 +22,8 @@ SETTINGS = {
 
 
 def readTime():
-        #  return the system-time:
-        return datetime.datetime.now()
+    #  return the system-time:
+    return datetime.datetime.now()
     
 def checkLight():
     timestamp = readTime()
@@ -42,11 +42,11 @@ def checkWaterPlants():
         if timestamp.hour == time and timestamp.minute == 0:
             print("\tFilled basin, ");
             # Close Valve
-            GPIO.output(SETTINGS["VALVE_GPIO"], GPIO.LOW) # Valve LOW = Closed
+            GPIO.setup(SETTINGS["VALVE_GPIO"], GPIO.OUT, initial=GPIO.LOW)  # Valve LOW = Closed
             # turn pump on for some seconds
             GPIO.setup(SETTINGS["WATER_PUMP_GPIO"], GPIO.OUT, initial=GPIO.HIGH)
             time.sleep(SETTINGS["PUMP_TIME"])
-            GPIO.output(SETTINGS["WATER_PUMP_GPIO"], GPIO.LOW)
+            GPIO.setup(SETTINGS["WATER_PUMP_GPIO"], GPIO.OUT, initial=GPIO.LOW)
 
 
 def checkDrainPlants():
@@ -72,5 +72,8 @@ if __name__ == '__main__':
         checkLight()
         checkWaterPlants()
         checkDrainPlants()
+        GPIO.setup(SETTINGS["WATER_PUMP_GPIO"], GPIO.OUT, initial=GPIO.HIGH)
+        GPIO.setup(SETTINGS["WATER_PUMP_GPIO"], GPIO.OUT, initial=GPIO.LOW)
+
     except:
         GPIO.cleanup()
