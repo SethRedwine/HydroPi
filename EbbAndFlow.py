@@ -27,7 +27,6 @@ def readTime():
     
 def checkLight():
     timestamp = readTime()
-    print("%s" % timestamp.hour)
     if SETTINGS["LIGHT_FROM"] <= timestamp.hour < SETTINGS["LIGHT_UNTIL"]:
         # turn light on
         GPIO.setup(SETTINGS["LIGHT_GPIO"], GPIO.OUT, initial=GPIO.HIGH) # Relay HIGH = ON
