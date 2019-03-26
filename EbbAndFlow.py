@@ -11,7 +11,7 @@ SETTINGS = {
     # timings
     "LIGHT_FROM": 6,  # Hour, Time to turn on light
     "LIGHT_UNTIL": 20,  # Hour, Time to turn off light
-    "WATERING_TIMES": [7, 11, 15, 19, 23], # Hours, Times to water the plant basin
+    "WATERING_TIMES": [7, 11, 15, 19], # Hours, Times to water the plant basin
     
     "WATER_PUMP_TIME": 20,  # Seconds, how long the pump should be turned on
 }
@@ -27,7 +27,8 @@ def readTime():
     
 def checkLight():
     timestamp = readTime()
-    if SETTINGS["LIGHT_FROM"] <= timestamp.hour <= SETTINGS["LIGHT_UNTIL"]:
+    print("%s" % timestamp.hour)
+    if SETTINGS["LIGHT_FROM"] <= timestamp.hour < SETTINGS["LIGHT_UNTIL"]:
         # turn light on
         GPIO.setup(SETTINGS["LIGHT_GPIO"], GPIO.OUT, initial=GPIO.HIGH) # Relay HIGH = ON
         print("\tLight on, ");
