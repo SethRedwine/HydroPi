@@ -34,7 +34,7 @@ def checkLight():
     else:
         # turn light off
         GPIO.setup(SETTINGS["LIGHT_GPIO"], GPIO.OUT, initial=GPIO.LOW)
-        print("\tLight off, ");
+        print("\tLight off, "); 
 
 def checkWaterPlants():
     timestamp = readTime()
@@ -72,8 +72,6 @@ if __name__ == '__main__':
         checkLight()
         checkWaterPlants()
         checkDrainPlants()
-        GPIO.setup(SETTINGS["WATER_PUMP_GPIO"], GPIO.OUT, initial=GPIO.HIGH)
-        GPIO.setup(SETTINGS["WATER_PUMP_GPIO"], GPIO.OUT, initial=GPIO.LOW)
 
     except:
         GPIO.cleanup()
