@@ -1,5 +1,6 @@
 import RPi.GPIO as GPIO
 import datetime
+import time
 
 SETTINGS = {
     # define pins
@@ -38,22 +39,22 @@ def checkLight():
 
 def checkWaterPlants():
     timestamp = readTime()
-    for time in SETTINGS["WATERING_TIMES"]:
-        if timestamp.hour == time and timestamp.minute == 0:
+    for wateringTime in SETTINGS["WATERING_TIMES"]:
+        if timestamp.hour == wateringTime and timestamp.minute == 0:
             print("\tFilled basin, ");
             # Close Valve
             GPIO.setup(SETTINGS["VALVE_GPIO"], GPIO.OUT, initial=GPIO.LOW)  # Valve LOW = Closed
             # turn pump on for some seconds
             GPIO.setup(SETTINGS["WATER_PUMP_GPIO"], GPIO.OUT, initial=GPIO.HIGH)
-            time.sleep(SETTINGS["PUMP_TIME"])
+            time.sleep(SETTINGS["WATER_PUMP_TIME"])
             GPIO.setup(SETTINGS["WATER_PUMP_GPIO"], GPIO.OUT, initial=GPIO.LOW)
 
 
 def checkDrainPlants():
     timestamp = readTime()
-    for time in SETTINGS["WATERING_TIMES"]:
+    for drainTime in SETTINGS["WATERING_TIMES"]:
         # Drain plants after 15ish minutes
-        if timestamp.hour == time and timestamp.minute == 15:
+        if timestamp.hour == drainTime and timestamp.minute == 15:
             # open valve for some seconds
             GPIO.setup(SETTINGS["VALVE_GPIO"], GPIO.OUT, initial=GPIO.HIGH) # Valve HIGH = Open
             print("\tDrained basin, ");
@@ -69,9 +70,9 @@ if __name__ == '__main__':
         GPIO.setmode(GPIO.BCM)
  
         # execute functions
-        checkLight()
         checkWaterPlants()
         checkDrainPlants()
+        checkLight()
 
     except:
         GPIO.cleanup()

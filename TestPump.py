@@ -21,19 +21,19 @@ SETTINGS = {
 def testLight():
     GPIO.setup(SETTINGS["WATER_PUMP_GPIO"], GPIO.OUT, initial=GPIO.HIGH) # Relay HIGH = ON
     print("Pump on");
-    time.sleep(5)
+    time.sleep(SETTINGS["WATER_PUMP_TIME"])
     GPIO.setup(SETTINGS["WATER_PUMP_GPIO"], GPIO.OUT, initial=GPIO.LOW)
     print("Pump off");
-    time.sleep(5)
+    time.sleep(SETTINGS["WATER_PUMP_TIME"])
     GPIO.setup(SETTINGS["WATER_PUMP_GPIO"], GPIO.OUT, initial=GPIO.HIGH)
     print("Pump on");
-    time.sleep(5)
+    time.sleep(SETTINGS["WATER_PUMP_TIME"])
     GPIO.setup(SETTINGS["WATER_PUMP_GPIO"], GPIO.OUT, initial=GPIO.LOW)
     print("Pump off");
-    time.sleep(5)
+    time.sleep(SETTINGS["WATER_PUMP_TIME"])
     GPIO.setup(SETTINGS["WATER_PUMP_GPIO"], GPIO.OUT, initial=GPIO.HIGH) 
     print("Pump on");
-    time.sleep(5)
+    time.sleep(SETTINGS["WATER_PUMP_TIME"])
     GPIO.setup(SETTINGS["WATER_PUMP_GPIO"], GPIO.OUT, initial=GPIO.LOW)
     print("Pump off");
 
